@@ -15,3 +15,4 @@ description: Start a new house/apartment render project from the plugin template
 4. **Fill in `house/lighting.json` → `site`** (lat/lon) and rename the level in `house/levels.json` and `house/<level>.json` (e.g. `ground`, `apartment`).
 5. Hand over to **`update-from-plans`** to trace the geometry, then **`preview`**.
 6. Make sure `CLAUDE.md` in the new folder names the project and points to this plugin's skills (the template does that).
+7. The template's `.claude/settings.json` declares the plugin's marketplace and enables the plugin, so anyone who opens the project in Claude Code is offered the install. Fill in the project name at the top of `README.md` (it holds the install steps for the people the project is shared with).

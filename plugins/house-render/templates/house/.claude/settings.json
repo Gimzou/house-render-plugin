@@ -1,0 +1,6 @@
+{
+  "extraKnownMarketplaces": {
+    "house-render": {"source": {"source": "github", "repo": "Gimzou/house-render-plugin"}}
+  },
+  "enabledPlugins": {"house-render@house-render": true}
+}

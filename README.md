@@ -6,7 +6,7 @@ A Claude Code plugin that turns a home's floor plans into a Blender model, fast 
 1. Install **Blender 4.5 LTS** from blender.org (the tested version; runs on Windows, Linux and every Mac).
 2. In Claude Code:
    ```
-   /plugin marketplace add <git URL or local path of this repo>
+   /plugin marketplace add Gimzou/house-render-plugin
    /plugin install house-render@house-render
    ```
 3. Ask Claude: "run house-render setup". It finds Blender, detects your GPU and writes `~/.config/house-render/machine.json`.
@@ -27,3 +27,6 @@ Each home is its own folder (and git repo): `brief.md` (the owners' decisions), 
 Smoke test: `blender -b -P plugins/house-render/engine/build.py -- --house plugins/house-render/examples/box-house` builds it.
 
 Tested with Blender 4.5 LTS (EEVEE previews, Cycles CPU).
+
+## Sharing a project
+Every project made with `new-house` has a `.claude/settings.json` that points to this marketplace and enables the plugin, so anyone who opens the shared project in Claude Code is offered the install. Its `README.md` has the manual steps too.
