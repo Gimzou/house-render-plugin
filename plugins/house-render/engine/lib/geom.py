@@ -58,19 +58,47 @@ def boolean(target, cutter):
     bpy.ops.object.modifier_apply(modifier="cut")
 
 
+def edge_thicknesses(ground):
+    """Per-footprint-edge wall thickness: 'wall_thickness' is one value or a list (edge i = vertex i -> i+1)."""
+    t = v(ground["wall_thickness"])
+    n = len(ground["footprint"])
+    if isinstance(t, list):
+        assert len(t) == n, f"wall_thickness list has {len(t)} values for {n} footprint edges"
+        return [float(v(x)) for x in t]
+    return [float(t)] * n
+
+
+def facade_thickness(fr, ground):
+    """Thickness of the footprint edge the facade lies on (default: the thickest wall)."""
+    (ox, oy), u, _ = fr
+    fp = ground["footprint"]
+    ts = edge_thicknesses(ground)
+    for i, (a, b) in enumerate(zip(fp, fp[1:] + fp[:1])):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        L = math.hypot(dx, dy)
+        if L < 1e-9:
+            continue
+        cross = abs(dx * u[1] - dy * u[0]) / L
+        off = abs((ox - a[0]) * dy - (oy - a[1]) * dx) / L
+        if cross < 1e-6 and off < 0.02:
+            return ts[i]
+    return max(ts)
+
+
 def inset_polygon(poly, t):
-    """Inset a simple polygon by t with mitred corners (works for any corner angle, not only 90 deg)."""
+    """Inset a simple polygon with mitred corners (any corner angle). t = one thickness or one per edge."""
     n = len(poly)
+    ts = t if isinstance(t, (list, tuple)) else [t] * n
     area2 = sum(poly[i][0] * poly[(i + 1) % n][1] - poly[(i + 1) % n][0] * poly[i][1] for i in range(n))
     s = 1 if area2 > 0 else -1  # counter-clockwise -> interior on the left of each edge
 
-    def offset_line(a, b):
+    def offset_line(a, b, t):
         dx, dy = b[0] - a[0], b[1] - a[1]
         L = math.hypot(dx, dy)
         nx, ny = s * -dy / L, s * dx / L
         return (a[0] + nx * t, a[1] + ny * t), (dx, dy)
 
-    lines = [offset_line(poly[i], poly[(i + 1) % n]) for i in range(n)]
+    lines = [offset_line(poly[i], poly[(i + 1) % n], ts[i]) for i in range(n)]
     res = []
     for i in range(n):
         (p, d), (q, e) = lines[i - 1], lines[i]
@@ -99,10 +127,9 @@ def oriented_box(name, center, size, rot, mat, col):
 
 
 def build_walls(ground, level, mats, cols):
-    t = v(ground["wall_thickness"])
     h = v(level["wall_height"])
     outer = [tuple(p) for p in ground["footprint"]]
-    inner = inset_polygon(outer, t)
+    inner = inset_polygon(outer, edge_thicknesses(ground))
     walls = prism("walls", outer, 0, h, mats["exterior_wall"], cols["structure"])
     core = prism("core", inner, -0.01, h + 0.1, mats["exterior_wall"], cols["structure"])
     boolean(walls, core)
@@ -111,6 +138,7 @@ def build_walls(ground, level, mats, cols):
     inset = ground["frame_inset"]
     for op in ground["openings"]:
         fr = facade_frame(ground["facades"][op["facade"]], outer)
+        t = facade_thickness(fr, ground)
         w, hh, sill = v(op["width"]), v(op["height"]), v(op["sill"])
         c, s, rot = opening_box(fr, v(op["pos"]), w, hh, sill, t * 3, t)
         cutter = oriented_box("cut_" + op["id"], c, s, rot, None, cols["structure"])
@@ -191,7 +219,7 @@ def build_ceiling(ground, level, mats, cols):
         return None
     z0 = v(c["clear_height"])
     # inner polygon: the wall ring keeps its own top face, so no overlapping coplanar faces (roof seams)
-    poly = inset_polygon([tuple(p) for p in ground["footprint"]], v(ground["wall_thickness"]))
+    poly = inset_polygon([tuple(p) for p in ground["footprint"]], edge_thicknesses(ground))
     return prism("ceiling", poly, z0, z0 + v(c["thickness"]), mats["ceiling"], collection("ceiling"))
 
 

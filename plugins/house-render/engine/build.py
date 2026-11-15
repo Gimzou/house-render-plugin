@@ -57,6 +57,17 @@ def report(d, name):
     if tot:
         fa = data.polygon_area(g["footprint"])
         print(f"  {'FOOTPRINT':12s} {fa:6.2f} m2 vs plan total {tot:6.2f}  ({(fa - tot) / tot * 100:+.0f}%)")
+    checks = g.get("dimension_checks", [])
+    if checks:
+        print("\n=== DIMENSION CHECKS (model vs plan) ===")
+    for c in checks:
+        (x0, y0), (x1, y1) = c["from"], c["to"]
+        ax = c.get("axis")
+        m = abs(x1 - x0) if ax == "x" else abs(y1 - y0) if ax == "y" else ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5
+        diff = (m - c["plan"]) * 100
+        tol = c.get("tol_cm", 5)
+        flag = "  <-- CHECK" if abs(diff) > tol else ""
+        print(f"  {c['id']:14s} {m:6.2f} m vs {c['plan']:6.2f}  ({diff:+.0f} cm, tol {tol}){flag}  {c.get('label', '')}")
     for s in g.get("outdoor", []):
         a, pa = data.polygon_area(s["polygon"]), v(s.get("plan_area"))
         print(f"  {s['id']:12s} {a:6.2f} m2" + (f" vs {pa:6.2f}  ({(a - pa) / pa * 100:+.0f}%)" if pa else ""))

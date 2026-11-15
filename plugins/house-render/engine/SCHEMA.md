@@ -11,13 +11,14 @@ Units are metres and degrees. **Axes:** +X = right of the plan sheet, +Y = top o
 | `orientation.plan_up_bearing_deg` | compass bearing of the sheet's top (read the north arrow). Drives the sun. |
 | `footprint` | outer polygon, counter-clockwise, `[[x, y], ...]` |
 | `plan_total_area` | title-block area, checked against the footprint |
-| `wall_thickness` | one thickness for the outer wall ring (inset with mitred corners, any angle) |
+| `wall_thickness` | outer wall ring: one value, or a list with one value per footprint edge (edge i = vertex i to i+1). Inset with mitred corners at any angle. Openings take the thickness of the edge their facade lies on. |
 | `facades` | `{"name": {"from": [x, y], "to": [x, y]}}`, one per edge that has openings. The inward side is found automatically. Legacy: `{"axis": "x"/"y", "line", "inward": ±1}`, where `pos` is then a coordinate |
 | `openings` | `{"id", "facade", "pos" (distance from the facade's 'from' to the opening centre), "width", "height", "sill", "kind": "window" or "door"}` |
 | `frame_inset`, `glass_pane_thickness` | pane/door leaf inset in the opening |
-| `partition_thickness`, `partitions` | interior walls, axis-aligned: `{"id", "from", "to", "doors": [{"id", "center" (x or y along the wall), "width", "height", "type": "opening", "sliding_pocket" or "swing", ...}]}` |
+| `partition_thickness`, `partitions` | interior walls, axis-aligned: `{"id", "from", "to", "doors": [{"id", "center" (x or y along the wall), "width", "height", "type": "opening", "sliding_pocket" or "swing"}]}`. A swing door adds `"swing": +1/-1` (the leaf opens toward + or - the wall's perpendicular axis, drawn open 90°), plus `"leaf"` (width) and `"hinge": "end" or "start"`. |
 | `rooms` | `{"id", "name", "polygon", "finish": <surface>, "plan_area"?}`: floor finish and area check |
 | `outdoor` | terraces and balconies: `{"id", "polygon", "thickness", "material", "plan_area"?, "railing": {"edges": [[i, j], ...] or "all", "height", "thickness", "material"}}`. Railings sit on the listed polygon edges. |
+| `dimension_checks` | `{"id", "label", "from": [x, y], "to": [x, y], "axis": "x", "y" or null, "plan": metres, "tol_cm"?: 5, "source"}`. The build prints model against plan for each written dimension. Use the same reference lines as the plan (outer face, wall axis...). |
 | `blocks` | free boxes `{"id", "center": [x, y, z], "size": [w, d, h], "rot_z", "material"}` (joinery, columns...) |
 | `stairs`, `chimney_breast` | optional; see `build_stairs` / `build_partitions` in `engine/lib/geom.py` for the fields |
 | `site` | `{"enabled", "ground_z" (e.g. -9.5 for a 3rd-floor flat), "ground_plane_size", "ground_plane_center"}` |

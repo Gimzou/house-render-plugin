@@ -20,5 +20,8 @@ Read `${CLAUDE_PLUGIN_ROOT}/engine/SCHEMA.md` first: it defines every field and 
    - Openings sit on a façade (`pos` = distance along it). Interior walls are `partitions`, with door gaps.
    - `rooms` are for floor finishes and area checks. `outdoor` is for terraces and balconies (slab plus railing edges).
    - Tag every guess `{"value": x, "placeholder": "<why>"}`, add `src` to traced items, and set `plan_total_area` and `plan_area` where the plan gives them.
-5. **Build, then compare:** run `preview` with the `plan_top` ortho camera (ceiling hidden) and compare it with the PDF side by side. The build prints the footprint and room areas against the plan: aim for within 2%. Fix the data, not the engine.
+   - Wall thickness: trace each outer wall and use the per-edge list. Don't flatten them to one value: a 20 cm error moves every room.
+   - Doors: read the swing arcs and use `"type": "swing"` with the side the leaf opens to.
+   - **Dimension checks:** add every written dimension of every sheet (sales plans included) to `dimension_checks`. First find what each one measures (outer face, wall axis, finished face) by looking where its ticks sit, and use the same reference points. Keep each within 5 cm (10 cm for traced-only references).
+5. **Build, then compare:** run `preview` with the `plan_top` ortho camera (ceiling hidden) and compare it with the PDF side by side. The build prints the footprint and room areas against the plan (aim for within 2%) and the DIMENSION CHECKS block (no `<-- CHECK` flags). Fix the data, not the engine.
 6. Log the change in `docs/DECISIONS.md` (sources, scale, checks) and tick `docs/ROADMAP.md`.
