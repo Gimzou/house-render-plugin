@@ -1,0 +1,42 @@
+{
+  "cameras": [
+    {
+      "name": "plan_top",
+      "type": "ortho",
+      "plan_up": true,
+      "ortho_scale": 12,
+      "location": [
+        4,
+        2,
+        15
+      ],
+      "target": [
+        4,
+        2,
+        0
+      ],
+      "resolution": [
+        1000,
+        1000
+      ],
+      "hide": [
+        "ceiling"
+      ]
+    },
+    {
+      "name": "living",
+      "location": [
+        1.0,
+        5.2,
+        1.6
+      ],
+      "target": [
+        7,
+        1.5,
+        1.2
+      ],
+      "lens": 18,
+      "clip_start": 0.05
+    }
+  ]
+}

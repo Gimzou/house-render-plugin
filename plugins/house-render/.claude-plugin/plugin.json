@@ -1,0 +1,5 @@
+{
+  "name": "house-render",
+  "version": "0.1.0",
+  "description": "Plans-to-renders kit: data-driven Blender model (walls, openings, terraces, furniture, real sun), fast EEVEE previews, Cycles hero stills, and a render reviewer."
+}

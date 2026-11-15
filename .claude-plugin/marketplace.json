@@ -1,0 +1,8 @@
+{
+  "name": "house-render",
+  "owner": {"name": "house-render maintainers"},
+  "plugins": [
+    {"name": "house-render", "source": "./plugins/house-render",
+     "description": "Turn a house or apartment's floor plans into a Blender model with EEVEE previews and Cycles photoreal stills."}
+  ]
+}

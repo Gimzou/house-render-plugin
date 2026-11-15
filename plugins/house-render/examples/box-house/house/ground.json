@@ -1,0 +1,30 @@
+{
+  "_doc": "Synthetic test house for the plugin. +Y = top of the plan sheet. Origin = outer bottom-left corner.",
+  "orientation": {"plan_up_bearing_deg": {"value": 0, "placeholder": "example: sheet top = north"}},
+  "footprint": [[0, 0], [8, 0], [8, 4.5], [6.5, 6], [0, 6]],
+  "plan_total_area": 46.9,
+  "wall_thickness": 0.3,
+  "facades": {
+    "south": {"from": [0, 0], "to": [8, 0]},
+    "diag": {"from": [8, 4.5], "to": [6.5, 6]},
+    "north": {"from": [0, 6], "to": [6.5, 6]}
+  },
+  "openings": [
+    {"id": "W1", "facade": "south", "pos": 2.0, "width": 1.6, "sill": 0.0, "height": 2.3, "kind": "window"},
+    {"id": "W2", "facade": "diag", "pos": 1.06, "width": 1.6, "sill": 0.0, "height": 2.3, "kind": "window"},
+    {"id": "D1", "facade": "north", "pos": 1.5, "width": 0.9, "sill": 0.0, "height": 2.1, "kind": "door"}
+  ],
+  "frame_inset": 0.05,
+  "partition_thickness": 0.1,
+  "partitions": [
+    {"id": "p1", "from": [5.0, 0.3], "to": [5.0, 3.0], "doors": []}
+  ],
+  "rooms": [
+    {"id": "living", "polygon": [[0.3, 0.3], [7.7, 0.3], [7.7, 4.38], [6.38, 5.7], [0.3, 5.7]], "finish": "floor_wood", "plan_area": 39.1}
+  ],
+  "outdoor": [
+    {"id": "terrace", "polygon": [[0, -2], [8, -2], [8, 0], [0, 0]], "thickness": 0.2, "material": "terrace",
+     "railing": {"edges": [[0, 1], [1, 2], [3, 0]], "height": 1.0, "thickness": 0.05, "material": "railing_glass"}}
+  ],
+  "site": {"ground_z": -0.2, "ground_plane_size": 60, "ground_plane_center": [4, 3]}
+}

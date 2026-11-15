@@ -1,0 +1,136 @@
+{
+  "_doc": "Material library (flat colours until the owners choose finishes) and surface assignments. Swap a choice by changing the name in 'surfaces'.",
+  "library": {
+    "massing.wall": {
+      "color": [
+        0.93,
+        0.92,
+        0.89
+      ],
+      "roughness": 0.85
+    },
+    "massing.partition": {
+      "color": [
+        0.95,
+        0.94,
+        0.92
+      ],
+      "roughness": 0.85
+    },
+    "massing.slab": {
+      "color": [
+        0.45,
+        0.45,
+        0.45
+      ],
+      "roughness": 0.8
+    },
+    "massing.ceiling": {
+      "color": [
+        0.95,
+        0.95,
+        0.94
+      ],
+      "roughness": 0.9
+    },
+    "glass.clear": {
+      "type": "glass",
+      "color": [
+        0.9,
+        0.95,
+        0.95
+      ],
+      "roughness": 0.0
+    },
+    "frame.dark_grey": {
+      "color": [
+        0.12,
+        0.12,
+        0.13
+      ],
+      "roughness": 0.5
+    },
+    "door.leaf_placeholder": {
+      "color": [
+        0.85,
+        0.84,
+        0.8
+      ],
+      "roughness": 0.6
+    },
+    "floor.wood_tbd": {
+      "color": [
+        0.55,
+        0.42,
+        0.3
+      ],
+      "roughness": 0.6
+    },
+    "floor.tile_tbd": {
+      "color": [
+        0.72,
+        0.72,
+        0.7
+      ],
+      "roughness": 0.4
+    },
+    "outdoor.terrace_tiles": {
+      "color": [
+        0.6,
+        0.58,
+        0.55
+      ],
+      "roughness": 0.8
+    },
+    "outdoor.parapet": {
+      "color": [
+        0.85,
+        0.83,
+        0.78
+      ],
+      "roughness": 0.85
+    },
+    "site.ground": {
+      "color": [
+        0.3,
+        0.38,
+        0.25
+      ],
+      "roughness": 0.95
+    },
+    "block.furniture": {
+      "color": [
+        0.5,
+        0.55,
+        0.65
+      ],
+      "roughness": 0.7
+    },
+    "figure.scale": {
+      "color": [
+        0.7,
+        0.5,
+        0.35
+      ],
+      "roughness": 0.7
+    }
+  },
+  "surfaces": {
+    "exterior_wall": "massing.wall",
+    "partition": "massing.partition",
+    "glazing": "glass.clear",
+    "door": "frame.dark_grey",
+    "door_leaf": "door.leaf_placeholder",
+    "slab": "massing.slab",
+    "ceiling": "massing.ceiling",
+    "ground": "site.ground",
+    "floor_wood": "floor.wood_tbd",
+    "floor_tile": "floor.tile_tbd",
+    "terrace": "outdoor.terrace_tiles",
+    "railing": "outdoor.parapet",
+    "railing_glass": "glass.clear",
+    "furniture.block": "block.furniture",
+    "people": "figure.scale"
+  },
+  "_placeholder_note": "All finishes are flat placeholders: nothing chosen yet (see brief.md)."
+}

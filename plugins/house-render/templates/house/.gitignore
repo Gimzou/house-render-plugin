@@ -1,0 +1,6 @@
+build/
+*.blend1
+.DS_Store
+assets/models/*/
+!assets/models/.gitkeep
+__pycache__/
