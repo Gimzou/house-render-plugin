@@ -3,7 +3,7 @@
 A Claude Code plugin that turns a home's floor plans into a Blender model, fast EEVEE previews and photoreal Cycles stills. You talk to Claude; Claude traces the plans into JSON data, builds the model headless and shows you the renders.
 
 ## Install (once)
-1. Install **Blender 4.2 LTS or newer** from blender.org (Intel Macs: 4.5 LTS).
+1. Install **Blender 4.5 LTS** from blender.org (the tested version; runs on Windows, Linux and every Mac).
 2. In Claude Code:
    ```
    /plugin marketplace add <git URL or local path of this repo>
@@ -26,4 +26,4 @@ Each home is its own folder (and git repo): `brief.md` (the owners' decisions), 
 
 Smoke test: `blender -b -P plugins/house-render/engine/build.py -- --house plugins/house-render/examples/box-house` builds it.
 
-Origin: abstracted from a single-house project (Montgolfier render), then proven on an apartment (wo58).
+Tested with Blender 4.5 LTS (EEVEE previews, Cycles CPU).

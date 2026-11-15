@@ -19,7 +19,7 @@ Units are metres and degrees. **Axes:** +X = right of the plan sheet, +Y = top o
 | `rooms` | `{"id", "name", "polygon", "finish": <surface>, "plan_area"?}`: floor finish and area check |
 | `outdoor` | terraces and balconies: `{"id", "polygon", "thickness", "material", "plan_area"?, "railing": {"edges": [[i, j], ...] or "all", "height", "thickness", "material"}}`. Railings sit on the listed polygon edges. |
 | `blocks` | free boxes `{"id", "center": [x, y, z], "size": [w, d, h], "rot_z", "material"}` (joinery, columns...) |
-| `stairs`, `chimney_breast` | optional; see the montgolfier-style examples in `engine/lib/geom.py` |
+| `stairs`, `chimney_breast` | optional; see `build_stairs` / `build_partitions` in `engine/lib/geom.py` for the fields |
 | `site` | `{"enabled", "ground_z" (e.g. -9.5 for a 3rd-floor flat), "ground_plane_size", "ground_plane_center"}` |
 
 ## materials.json

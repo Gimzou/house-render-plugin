@@ -13,9 +13,9 @@ Read `${CLAUDE_PLUGIN_ROOT}/engine/SCHEMA.md` first: it defines every field and 
    - `raster`: renders the sheet at 1 px = 1 cm.
    - `map` and `scan`: give wall faces, door gaps and window gaps in cm.
    - `probe`: finds glazing lines and thin frames.
-   - Check one long traced run against a written dimension (e.g. the chain 291+385+192 = 868 vs traced 868) and record it.
+   - Check one long traced run against a written dimension (e.g. a written chain of three dimensions against the traced length of the same wall) and record it.
 3. **Read the north arrow** on a 600 dpi crop and set `orientation.plan_up_bearing_deg`, the compass bearing of the sheet's top. Record the source.
-4. **Write the data.** For anything non-trivial, keep a small generator script in the project (`tools/trace_<name>.py`, pixel coordinates in, JSON out) so a re-trace is a one-line edit. The `trace_wo58.py` pattern: a `P(px, py)` converter plus the lists.
+4. **Write the data.** For anything non-trivial, keep a small generator script in the project (`tools/trace_<level>.py`, pixel coordinates in, JSON out) so a re-trace is a one-line edit. Pattern: a `P(px, py)` helper that converts traced pixels to model metres (`x = (px - x0)/100, y = (y0 - py)/100`), then the footprint, facades, openings and partitions as lists, dumped to `house/<level>.json`.
    - Footprint: counter-clockwise outer polygon. Façades: one `{from, to}` segment per glazed or windowed edge; diagonal façades are fine.
    - Openings sit on a façade (`pos` = distance along it). Interior walls are `partitions`, with door gaps.
    - `rooms` are for floor finishes and area checks. `outdoor` is for terraces and balconies (slab plus railing edges).
