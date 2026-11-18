@@ -30,3 +30,6 @@ Tested with Blender 4.5 LTS (EEVEE previews, Cycles CPU).
 
 ## Sharing a project
 Every project made with `new-house` has a `.claude/settings.json` that points to this marketplace and enables the plugin, so anyone who opens the shared project in Claude Code is offered the install. Its `README.md` has the manual steps too.
+
+## License
+Engine code is [GPL-3.0-or-later](LICENSES/GPL-3.0-or-later.txt); skills, agents and docs are [CC BY 4.0](LICENSES/CC-BY-4.0.txt); templates and examples are [CC0](LICENSES/CC0-1.0.txt). See [LICENSING.md](LICENSING.md) for the full mapping. The models, renders and data you make with the plugin are yours.

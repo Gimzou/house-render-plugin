@@ -1,8 +1,13 @@
 {
   "name": "house-render",
-  "owner": {"name": "house-render maintainers"},
+  "owner": {
+    "name": "Arnould Geelhand"
+  },
   "plugins": [
-    {"name": "house-render", "source": "./plugins/house-render",
-     "description": "Turn a house or apartment's floor plans into a Blender model with EEVEE previews and Cycles photoreal stills."}
+    {
+      "name": "house-render",
+      "source": "./plugins/house-render",
+      "description": "Turn a house or apartment's floor plans into a Blender model with EEVEE previews and Cycles photoreal stills."
+    }
   ]
 }
