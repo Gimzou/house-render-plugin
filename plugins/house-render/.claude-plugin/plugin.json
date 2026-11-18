@@ -1,5 +1,9 @@
 {
   "name": "house-render",
   "version": "0.1.0",
-  "description": "Plans-to-renders kit: data-driven Blender model (walls, openings, terraces, furniture, real sun), fast EEVEE previews, Cycles hero stills, and a render reviewer."
+  "description": "Plans-to-renders kit: data-driven Blender model (walls, openings, terraces, furniture, real sun), fast EEVEE previews, Cycles hero stills, and a render reviewer.",
+  "author": {"name": "Arnould Geelhand", "url": "https://github.com/Gimzou"},
+  "homepage": "https://github.com/Gimzou/house-render-plugin",
+  "repository": "https://github.com/Gimzou/house-render-plugin",
+  "license": "GPL-3.0-or-later AND CC-BY-4.0 AND CC0-1.0"
 }
